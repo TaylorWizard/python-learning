@@ -4,6 +4,11 @@ car = {
     'version': 'S600',
     'production_date': '2016-12'
 }
+a = [1,2,3]
+
+input = input('please type something: ')
+input = int(input, 10)
+print('{0}'.format(a[input]))
 
 print('car info: ')
 
