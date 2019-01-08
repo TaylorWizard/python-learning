@@ -11,12 +11,14 @@ def show(func):
 
     return wrapper
 
+
 # Node类
 class Node(object):
     # initialize node
     def __init__(self, value, p=None):
         self.value = value
         self.next = p
+
 
 # 链表类实现
 class LinkList:

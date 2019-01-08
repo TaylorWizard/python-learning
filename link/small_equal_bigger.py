@@ -2,10 +2,10 @@ from link.link_list import Node, LinkList
 
 
 class SmallEqualBigger:
-
     # need n extra space
     @staticmethod
     def list_partition_1(head, pivot):
+        print('The pivot is {pivot}'.format(pivot=pivot))
         if head is None:
             return head
 
@@ -41,16 +41,52 @@ class SmallEqualBigger:
                 big -= 1
                 SmallEqualBigger.swap(node_lyst, big, index)
 
-
     # need O(1) extra space
     @staticmethod
     def list_partition_2(head, pivot):
-        sH = None # small head
-        sT = None # small tail
-        eH = None # equal head
-        eT = None # equal tail
-        bH = None # big head
-        bT = None # big tail
+        sh = None  # small head
+        st = None  # small tail
+        eh = None  # equal head
+        et = None  # equal tail
+        bh = None  # big head
+        bt = None  # big tail
+
+        while head is not None:
+            next = head.next
+            head.next = None
+            if head.value < pivot:
+                if sh is None:
+                    sh = head
+                    st = head
+                else:
+                    st.next = head
+                    st = head
+            elif head.value == pivot:
+                if eh is None:
+                    eh = head
+                    et = head
+                else:
+                    et.next = head
+                    et = head
+            else:
+                if bh is None:
+                    bh = head
+                    bt = head
+                else:
+                    bt.next = head
+                    bt = head
+            head = next
+
+        if st is not None:
+            st.next = eh
+            et = st if et is None else et
+
+        # all connect
+        if et is not None:
+            et.next = bh
+
+        # sh != None 返回 sh 否則看eh 是否为空, 不为空返回eh 否则返回bh
+        return sh if sh is not None else eh if eh is not None else bh
 
     @staticmethod
     def swap(node_lyst, x, y):
@@ -63,10 +99,11 @@ class SmallEqualBigger:
             print(node.value, end=' ')
             node = node.next
 
+
 if __name__ == '__main__':
     lyst = [1, 2, 33, 4, 55, 6, 76, 6, 78]
     link_list = LinkList()
     link_list.create(lyst)
-    new_head = SmallEqualBigger.list_partition_1(link_list.head, 55)
-
+    # new_head = SmallEqualBigger.list_partition_1(link_list.head, 55)
+    new_head = SmallEqualBigger.list_partition_2(link_list.head, 55)
     SmallEqualBigger.print_linked_list(new_head)
