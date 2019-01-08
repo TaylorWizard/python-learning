@@ -26,15 +26,13 @@ def mergeSortHelper(lyst, copybuffer, low, high):
         merge(lyst, copybuffer, low, middle, high)
 
 def merge(lyst, copybuffer, low, middle, high):
-    '''
-    :param lyst: list being sorted
-    :param copybuffer: temporary space needed during merge
-    :param low: beginning of first sorted list
-    :param middle: ending of first sorted list
-    :var middle + 1: beginning of second sorted list
-    :param high: ending of second sorted list
-    :return:
-    '''
+    # :param lyst: list being sorted
+    # :param copybuffer: temporary space needed during merge
+    # :param low: beginning of first sorted list
+    # :param middle: ending of first sorted list
+    # :var middle + 1: beginning of second sorted list
+    # :param high: ending of second sorted list
+    # :return:
 
     list_1_index = low
     list_2_index = middle + 1
