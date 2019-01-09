@@ -20,10 +20,20 @@ class Node(object):
         self.next = p
 
 
+class RandNode:
+    def __init__(self, value, p=None, rand=None):
+        self.value = value
+        self.next = p
+        self.rand = rand
+
 # 链表类实现
 class LinkList:
     def __init__(self):
         self.head = None
+
+    # 返回头节点
+    def get_head(self):
+        return self.head
 
     # 创建单链表
     def create(self, node_value_list):
