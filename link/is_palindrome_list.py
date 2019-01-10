@@ -1,3 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @File  : 123.py
+# @Author: Gakki
+# @Date  : 10/01/2019
+# @Desc  :
+
+
 # palindrome.py
 from queue import LifoQueue
 
