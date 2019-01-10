@@ -1,5 +1,6 @@
 from link.link_list import RandNode
 
+
 class CopyListWithRandom:
     @staticmethod
     def copy_list_with_rand_1(_head):
@@ -71,12 +72,12 @@ if __name__ == '__main__':
     head.next.next.next.next = RandNode(5)
     head.next.next.next.next.next = RandNode(6)
 
-    head.rand = head.next.next.next.next.next # 1 -> 6
-    head.next.rand = head.next.next.next.next.next # 2-> 6
-    head.next.next.rand = head.next.next.next.next # 3 -> 5
-    head.next.next.next.rand = head.next.next # 4 -> 3
-    head.next.next.next.next.rand = None # 5 -> None
-    head.next.next.next.next.next.rand = head.next.next.next # 6 -> 4
+    head.rand = head.next.next.next.next.next  # 1 -> 6
+    head.next.rand = head.next.next.next.next.next  # 2-> 6
+    head.next.next.rand = head.next.next.next.next  # 3 -> 5
+    head.next.next.next.rand = head.next.next  # 4 -> 3
+    head.next.next.next.next.rand = None  # 5 -> None
+    head.next.next.next.next.next.rand = head.next.next.next  # 6 -> 4
 
     print('origin list: ')
     CopyListWithRandom.print_rand_linked_list(head)

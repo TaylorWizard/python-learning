@@ -1,4 +1,5 @@
-from link.link_list import Node, LinkList
+from link.link_list import LinkList
+
 
 class FindFirstIntersectNode:
     @staticmethod
@@ -20,7 +21,7 @@ class FindFirstIntersectNode:
         # 当两个链表都没有环
         if loop_1 is None and loop_2 is None:
             return FindFirstIntersectNode.no_loop(head_1, head_2)
-        elif loop_1 is not None and loop_2 is not None: # 两个链表都有环
+        elif loop_1 is not None and loop_2 is not None:  # 两个链表都有环
             return FindFirstIntersectNode.both_loop(head_1, loop_1, head_2, loop_2)
 
     @staticmethod
@@ -56,6 +57,7 @@ class FindFirstIntersectNode:
         while n1 != n2:
             n1 = n1.next
             n2 = n2.next
+
         return n1
 
     @staticmethod
@@ -107,7 +109,6 @@ class FindFirstIntersectNode:
 
         return cur_1
 
-
     @staticmethod
     def both_loop(head_1, loop_1, head_2, loop_2):
         """
@@ -124,11 +125,11 @@ class FindFirstIntersectNode:
             cur_2 = head_2
 
             n = 0
-            while cur_1 is not None:
+            while cur_1 != loop_1:
                 n += 1
                 cur_1 = cur_1.next
 
-            while cur_2 is not None:
+            while cur_2 != loop_2:
                 n -= 1
                 cur_2 = cur_2.next
 
@@ -154,6 +155,7 @@ class FindFirstIntersectNode:
                 cur_1 = cur_1.next
             return None
 
+
 if __name__ == '__main__':
     lyst_1 = [1, 4, 15, 16]
     lyst_2 = [10, 11, 12, 13]
@@ -165,7 +167,7 @@ if __name__ == '__main__':
     list_2 = LinkList()
     list_2.create(lyst_2)
     list_2_tail = list_2.get(list_2.length() - 1)
-    list_2_tail.next = list_1.get(1) # 链表2的尾节点指向链表1索引为2的节点, 即指向lyst_1的4
+    list_2_tail.next = list_1.get(1)  # 链表2的尾节点指向链表1索引为2的节点, 即指向lyst_1的4
     intersect_node = FindFirstIntersectNode.get_intersect_node(list_1.get_head(), list_2.get_head())
     print('相交节点为:{0} -- value为: {1}'.format(intersect_node, intersect_node.value))
     print('list 1: ', end='')
@@ -182,11 +184,11 @@ if __name__ == '__main__':
     list_3.create(lyst_1)
     # 得到list_3的最后一个节点
     list_3_tail = list_3.get(list_3.length() - 1)
-    list_3_tail.next = list_3.get(2) # tail node 18 -> 16
+    list_3_tail.next = list_3.get(2)  # tail node 18 -> 16
 
     list_4.create(lyst_2)
     list_4_tail = list_4.get(list_4.length() - 1)
-    list_4_tail.next = list_4.get(1) # tail node 13 -> 11
+    list_4_tail.next = list_4.get(1)  # tail node 13 -> 11
 
     intersect_node = FindFirstIntersectNode.get_intersect_node(list_3.get_head(), list_4.get_head())
     print('两个链表都各自有环, 但不相交的情况')
@@ -200,13 +202,37 @@ if __name__ == '__main__':
 
     list_5.create(lyst_1)
     list_5_tail = list_5.get(list_5.length() - 1)
-    list_5_tail.next = list_5.get(1) # list 5 tail node 16 -> 4
+    list_5_tail.next = list_5.get(2)  # list 5 tail node 16 -> 15
 
     list_6.create(lyst_2)
     list_6_tail = list_6.get(list_6.length() - 1)
-    list_6_tail.next = list_5_tail.next # list 6 tail node 13 -> list 5 node 4 with index 1
-    # print('创建有相同环的两个链表, 并且有相同的入环节点', list_6.get_head().value)                          s
+    list_6_tail.next = list_5_tail.next  # list 6 tail node 13 -> list 5 node 15 with index 1
+    intersect_node = FindFirstIntersectNode.get_intersect_node(list_5.get_head(), list_6.get_head())
+    print('创建有相同环的两个链表, 并且有相同的入环节点的情况')
+    print('相交节点为:{0} -- value为: {1}'.format(intersect_node, intersect_node.value))
 
-    # intersect_node = FindFirstIntersectNode.get_intersect_node(list_5.get_head(), list_6.get_head())
+    print('===========================================')
 
     # 创建有相同环的两个链表, 并且有不同的入环节点
+    lyst_3 = [90, 96, 99, 100]
+    list_7 = LinkList()
+    list_8 = LinkList()
+    list_loop = LinkList()
+
+    # 将list_loop转为有环链表
+    list_loop.create(lyst_3)
+    list_loop_tail = list_loop.get(list_loop.length() - 1)
+    list_loop_tail.next = list_loop.get(0)  # tail node 100 -> head node 90
+
+    list_7.create(lyst_1)
+    list_7_tail = list_7.get(list_7.length() - 1)
+    list_7_tail.next = list_loop.get(0, True)  # 传入 True 代表是得到有环链表指定位置的节点
+
+    list_8.create(lyst_2)
+    list_8_tail = list_8.get(list_8.length() - 1)
+    list_8_tail.next = list_loop.get(3, True)
+
+    intersect_node = FindFirstIntersectNode.get_intersect_node(list_7.get_head(), list_8.get_head())
+    print('创建有相同环的两个链表, 并且有不同的入环节点的情况')
+    print('相交节点为:{0} -- value为: {1}'.format(intersect_node, intersect_node.value))
+

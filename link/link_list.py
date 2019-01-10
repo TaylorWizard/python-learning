@@ -1,6 +1,14 @@
 # link.py
-# 打印调用方法前后的单链表的装饰器
+
+
 def show(func):
+    """
+
+    打印调用方法前后的单链表的装饰器
+    :param func:
+    :return:
+    """
+
     def wrapper(_self, *args):
         print('方法{func_name}调用前'.format(func_name=func.__name__))
         _self.print()
@@ -26,10 +34,12 @@ class RandNode:
         self.next = p
         self.rand = rand
 
+
 # 链表类实现
 class LinkList:
     def __init__(self):
         self.head = None
+        self.tail = None
 
     # 返回头节点
     def get_head(self):
@@ -43,6 +53,8 @@ class LinkList:
             p.next = Node(value)
             p = p.next
 
+        self.tail = p
+
     # 生成单链表
     def generate(self):
         p = self.head
@@ -55,22 +67,34 @@ class LinkList:
         print([value for value in self.generate()])
 
     # 获取link list的长度
-    def length(self):
+    def length(self, loop=False):
         p = self.head
         length = 0
-        while p is not None:
+        if loop is False:
+            while p is not None:
+                length += 1
+                p = p.next
+        else:
             length += 1
-            p = p.next
+            while p != self.tail:
+                length += 1
+                p = p.next
 
         return length
 
-    # 获取单链表偏移元素返回并打印其节点值
-    # 支持顺序索引和逆序索引: 0代表索引0位, -1代表倒数第一位， -2代表倒数第二位
-    # 获取不存在的位返回None
-    def get(self, offset):
+    def get(self, offset, loop=False):
+        """
+
+        获取单链表偏移元素返回并打印其节点值
+        支持顺序索引和逆序索引: 0代表索引0位, -1代表倒数第一位， -2代表倒数第二位
+        获取不存在的位返回None
+        :param offset:
+        :param loop:
+        :return:
+        """
         p = self.head
         index = 0
-        length = self.length()
+        length = self.length(loop)
 
         # 超过链表最大长度
         if offset > length - 1:
@@ -100,10 +124,16 @@ class LinkList:
         tail_node.next = Node(value)
 
     @show
-    # 在给定的index位置插入节点 值为value
-    # 在两个节点之间才叫插入
-    # 所以在末尾插入就是在索引倒数第一个和倒数第二个插入
     def insert(self, offset, value):
+        """
+
+        在给定的index位置插入节点 值为value
+        在两个节点之间才叫插入
+        所以在末尾插入就是在索引倒数第一个和倒数第二个插入
+        :param offset:
+        :param value:
+        :return:
+        """
         length = self.length()
         node = Node(value)
 
@@ -129,10 +159,15 @@ class LinkList:
         print('在索引{index}插入节点值为: {value}'.format(index=offset, value=node.value))
 
     @show
-    # 删除单链表偏移位元素并打印
-    # 支持顺序索引和逆序索引：0代表索引0位，-1代表倒数第一位，-2代表倒数第二位
-    # 删除不存在的位返回None
     def delete(self, offset):
+        """
+
+        删除单链表偏移位元素并打印
+        支持顺序索引和逆序索引：0代表索引0位，-1代表倒数第一位，-2代表倒数第二位
+        删除不存在的位返回None
+        :param offset:
+        :return:
+        """
         p = self.head
         length = self.length()
         index = 0

@@ -9,6 +9,7 @@
 # palindrome.py
 from queue import LifoQueue
 
+
 class Palindrome:
     def __init__(self):
         self.queue = LifoQueue()
