@@ -1,5 +1,12 @@
 # link.py
 
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @File  : 123.py
+# @Author: Gakki
+# @Date  : 10/01/2019
+# @Desc  :  使用: 1.linked_list = LinkList()
+#                2.linked_list.create(list) list为列表, 就能按照列表的顺序生成链表
 
 def show(func):
     """

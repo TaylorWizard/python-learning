@@ -8,6 +8,7 @@
 
 # palindrome.py
 from queue import LifoQueue
+from link.link_list import LinkList, Node
 
 
 class Palindrome:
@@ -29,6 +30,12 @@ class Palindrome:
         return True
 
     def is_palindrome_2(self, head):
+        """
+
+        使用快慢指针, 额外n/2的空间
+        :param head:
+        :return:
+        """
         if head is None or head.next is None:
             return True
         right = head.next
@@ -48,7 +55,13 @@ class Palindrome:
 
         return True
 
-    def is_palindrome_3(self, head):
+    @staticmethod
+    def is_palindrome_3(head):
+        """
+
+        :param head: 链表的头节点
+        :return:
+        """
         if head is None or head.next is None:
             return True
 
@@ -89,3 +102,21 @@ class Palindrome:
 
         return res
 
+
+if __name__ == '__main__':
+    lyst = [1, 2, 3, 4, 3, 2, 1]
+    link_list = LinkList()
+    link_list.create(lyst)
+    palindrome = Palindrome()
+    print('result of palindrome 1: ', palindrome.is_palindrome_1(link_list.get_head()))
+    print('result of palindrome 2: ', palindrome.is_palindrome_2(link_list.get_head()))
+    print('result of palindrome 3: ', Palindrome.is_palindrome_3(link_list.get_head()))
+
+    print('=================================')
+
+    lyst_2 = [1, 2, 3, 4, 5, 6]
+    link_list_2 = LinkList()
+    link_list_2.create(lyst_2)
+    print('result of palindrome 1: ', palindrome.is_palindrome_1(link_list_2.get_head()))
+    print('result of palindrome 2: ', palindrome.is_palindrome_2(link_list_2.get_head()))
+    print('result of palindrome 3: ', Palindrome.is_palindrome_3(link_list_2.get_head()))
