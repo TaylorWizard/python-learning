@@ -70,6 +70,7 @@ class LinkList:
     def length(self, loop=False):
         p = self.head
         length = 0
+
         if loop is False:
             while p is not None:
                 length += 1

@@ -226,7 +226,7 @@ if __name__ == '__main__':
 
     list_7.create(lyst_1)
     list_7_tail = list_7.get(list_7.length() - 1)
-    list_7_tail.next = list_loop.get(0, True)  # 传入 True 代表是得到有环链表指定位置的节点
+    list_7_tail.next = list_loop.get(0, True)  # 传入True代表是得到有环链表指定位置的节点
 
     list_8.create(lyst_2)
     list_8_tail = list_8.get(list_8.length() - 1)
