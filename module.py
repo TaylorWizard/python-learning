@@ -1,4 +1,4 @@
-from sys import path, argv
+from _sys import path, argv
 import mymodule
 
 # def func():
