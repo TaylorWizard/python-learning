@@ -52,5 +52,5 @@ if __name__ == '__main__':
     node.left = Node(15)
     node.right = Node(5)
     node.left.left = Node(28)
-    result_2 = IsBST.is_bst(bst.get_root())
+    result_2 = IsBST.is_bst(node)
     print(result_2)
