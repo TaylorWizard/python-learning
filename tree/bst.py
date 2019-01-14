@@ -7,6 +7,7 @@
 
 from queue import LifoQueue
 
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -159,6 +160,7 @@ class BST:
 
         while not stack_2.empty():
             print(stack_2.get().data, end=' ')
+
 
 if __name__ == '__main__':
     node_lyst = [17, 5, 35, 2, 11, 29, 38]

@@ -1,6 +1,7 @@
 from tree.bst import BST
 from queue import LifoQueue
 
+
 class DFS:
     def __init__(self):
         pass
@@ -14,7 +15,7 @@ class DFS:
         stack = LifoQueue()
         stack.put(root)
         level_map = dict()
-        cur_depth = 0 # 当前的第几层
+        cur_depth = 0  # 当前的第几层
 
         level_map[root] = 1
 
@@ -35,8 +36,9 @@ class DFS:
 
         return cur_depth
 
+
 if __name__ == '__main__':
-    node_list = [17, 5, 35, 2, 11, 29, 38, 37, 40]
+    node_list = [17, 5, 35, 2, 11, 29, 38, 10, 12]
     bst_tree = BST(node_list)
     depth = DFS.depth_first_search(bst_tree.get_root())
     print(depth)

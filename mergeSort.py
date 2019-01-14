@@ -1,7 +1,8 @@
 import numpy as np
 import random as rd
 
-def mergeSort(lyst):
+
+def mergesort(lyst):
     '''
     :param lyst: list being sorted
     :var copybuffer temporary space needed during merge
@@ -10,6 +11,7 @@ def mergeSort(lyst):
     # initialize empty array
     copybuffer = np.empty(len(lyst))
     mergeSortHelper(lyst, copybuffer, 0, len(lyst) - 1)
+
 
 def mergeSortHelper(lyst, copybuffer, low, high):
     '''
@@ -24,6 +26,7 @@ def mergeSortHelper(lyst, copybuffer, low, high):
         mergeSortHelper(lyst, copybuffer, low, middle)
         mergeSortHelper(lyst, copybuffer, middle + 1, high)
         merge(lyst, copybuffer, low, middle, high)
+
 
 def merge(lyst, copybuffer, low, middle, high):
     # :param lyst: list being sorted
@@ -54,15 +57,17 @@ def merge(lyst, copybuffer, low, middle, high):
             list_2_index += 1
 
     for i in range(low, high + 1):
-        lyst[i] = int(copybuffer[i]) #copy sorted items back to proper position in list
+        lyst[i] = int(copybuffer[i])  # copy sorted items back to proper position in list
 
-def main(size = 20, sort = mergeSort):
+
+def main(size=20, sort=mergesort):
     lyst = []
     for i in range(size):
         lyst.append(rd.randint(0, size + 10))
     print('the origin lyst is: {0}'.format(lyst))
     sort(lyst)
     print('the list sorted is: {0}'.format(lyst))
+
 
 if __name__ == '__main__':
     main()
