@@ -40,7 +40,7 @@ class BST:
 
         if not flag:
             new_node = Node(data)
-            new_node.parent = n
+            new_node.parent = p
             if data > p.data:
                 p.right = new_node
             else:
