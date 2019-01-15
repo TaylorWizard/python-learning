@@ -20,7 +20,28 @@ class LowestAncestorNode:
 
     @staticmethod
     def get_lowest_ancestor_node(_root, o1, o2):
-        pass
+        """
+
+        不用额外空间得到最低公共祖先节点
+        四种情况:
+                1. 节点的左子树和右子树都没有o1或o2, 返回None
+                2. 自己是o1或o2就返回自己,例如当前节点是o1，它的右子树有o2, 那么o1就是最低公共祖先节点
+                3. 自己不是o1或o2, 返回o1或o2
+                4. 节点左子树和右子树都有o1或o2, 返回自己
+        :param _root:
+        :param o1:
+        :param o2:
+        :return:
+        """
+        if _root is None or _root is o1 or _root is o2:
+            return _root
+
+        left = LowestAncestorNode.get_lowest_ancestor_node(_root.left, o1, o2)
+        right = LowestAncestorNode.get_lowest_ancestor_node(_root.right, o1, o2)
+        if left is not None and right is not None:
+            return _root
+
+        return left if left is not None else right
 
     def query_lowest_ancestor_node(self, o1, o2):
         """
@@ -61,3 +82,8 @@ if __name__ == '__main__':
     lowest_ancestor_node = LowestAncestorNode(root)
     result = lowest_ancestor_node.query_lowest_ancestor_node(n1, n2)
     print('lowest ancestor node is: {0}'.format(result.data))
+
+    print('=================================================')
+    print('no extra space: ')
+    result_1 = LowestAncestorNode.get_lowest_ancestor_node(root, n1, n2)
+    print('lowest ancestor node is: {0}'.format(result_1.data))

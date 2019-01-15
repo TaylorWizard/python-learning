@@ -17,10 +17,6 @@ class TreeMaxWidth:
         level_map[root] = 1
         _queue.put(root)
 
-        node = None
-        left = None
-        right = None
-
         while not _queue.empty():
             node = _queue.get()
             left = node.left
