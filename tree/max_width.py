@@ -43,6 +43,7 @@ class TreeMaxWidth:
 
         return max_width
 
+
 if __name__ == '__main__':
     node_list = [17, 5, 35, 2, 11, 29, 38]
     tree_max_width = TreeMaxWidth()
