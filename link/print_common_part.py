@@ -4,6 +4,7 @@
 
 from link.link_list import LinkList
 
+
 def print_common_part(head_1, head_2):
     print('Common part: ')
     # 使用外排法, 在归并排序使用过
