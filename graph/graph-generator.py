@@ -7,7 +7,9 @@
 @time: 1/16/19 2:40 PM
 @desc:
 """
-
+from graph.bfs import BFS
+from graph.dfs import DFS
+from graph.topology import Topology
 
 class GraphClass:
     class Edge:
@@ -15,6 +17,7 @@ class GraphClass:
 
         图的边的类表示
         """
+
         def __init__(self, _weight, _from, _to):
             self._weight = _weight
             self._from = _from
@@ -25,6 +28,7 @@ class GraphClass:
 
         图的顶点类定义
         """
+
         def __init__(self, value):
             self.value = value
             self.in_degree = 0  # 出度: 有多少顶点直接指向自己
@@ -33,7 +37,7 @@ class GraphClass:
             self.l_edge = []  # 自己有哪些边
 
     class Graph:
-        def __init(self):
+        def __init__(self):
             self.nodes = {}
             self.edges = set()
 
@@ -62,8 +66,8 @@ class GraphClass:
             if _to not in graph.nodes:
                 graph.nodes.update({_to: GraphClass.Node(_to)})
 
-            from_node = GraphClass.Node(_from)
-            to_node = GraphClass.Node(_to)
+            from_node = graph.nodes.get(_from)
+            to_node = graph.nodes.get(_to)
 
             from_node.l_next.append(to_node)
             from_node.out_degree += 1
@@ -78,4 +82,29 @@ class GraphClass:
 
 
 if __name__ == '__main__':
-    pass
+    g_matrix = [
+        [10, 5, 3],  # [weight, from, to]
+        [9, 5, 4],
+        [2, 6, 4],
+        [5, 4, 3],
+        [11, 5, 6],
+        [6, 3, 1],
+        [18, 1, 2],
+    ]
+
+    g = GraphClass.graph_generator(g_matrix)
+    print('bfs: ', end='')
+    BFS.bfs(g.nodes.get(5))
+
+    print('\n=====================')
+
+    print('dfs: ', end='')
+    DFS.dfs(g.nodes.get(5))
+
+    print('\n=====================')
+
+    print('Topology: ', end='')
+
+    result = Topology.topology(g)
+    for node in result[0:]:
+        print(node.value, end=' ')

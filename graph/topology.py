@@ -42,8 +42,8 @@ class Topology:
             cur = zero_in_queue.get()
             result.append(cur)
             for n in cur.l_next[0:]:
-                in_degree_map.update({n: cur.in_degree - 1})
-                if n.in_degree == 0:
+                in_degree_map.update({n: in_degree_map.get(n) - 1})
+                if in_degree_map.get(n) == 0:
                     zero_in_queue.put(n)
 
         return result

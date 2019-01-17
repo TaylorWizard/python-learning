@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-@author: Gakki
+@author: huangjing
 @software: garner
-@file: kruscal.py
-@time: 1/17/19 12:01 AM
+@file: oper_overload.py
+@time: 1/17/19 3:32 PM
 @desc:
 """

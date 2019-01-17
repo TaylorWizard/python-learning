@@ -30,9 +30,9 @@ class BFS:
 
         while not queue.empty():
             cur_node = queue.get()
-            print(cur_node, end='')
+            print(cur_node.value, end=' ')
             for n in cur_node.l_next[0:]:  # 遍历当前顶点向外指向的所有顶点
-                if cur_node not in n_set:
+                if n not in n_set:
                     queue.put(n)
                     n_set.add(n)
 
