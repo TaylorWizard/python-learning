@@ -1,5 +1,6 @@
 import random
 
+
 def heap_sort(lyst):
     for index in range(0, len(lyst)):
         heap_insert(lyst, index)
@@ -10,7 +11,8 @@ def heap_sort(lyst):
     while size > 0:
         heapify(lyst, 0, size)
         size = size - 1
-        swap(lyst, 0 , size)
+        swap(lyst, 0, size)
+
 
 def heap_insert(lyst, index):
     while lyst[index] > lyst[(index - 1) // 2]:

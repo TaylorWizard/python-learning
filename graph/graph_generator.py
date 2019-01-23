@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-@author: huangjing
+@author: Gakki
 @software: garner
-@file: graph-generator.py
+@file: graph_generator.py
 @time: 1/16/19 2:40 PM
 @desc:
 """
 from graph.bfs import BFS
 from graph.dfs import DFS
 from graph.topology import Topology
+
 
 class GraphClass:
     class Edge:
@@ -18,10 +19,22 @@ class GraphClass:
         图的边的类表示
         """
 
-        def __init__(self, _weight, _from, _to):
+        def __init__(self, _weight, _from=None, _to=None):
             self._weight = _weight
             self._from = _from
             self._to = _to
+
+        def get_weight(self):
+            return self._weight
+
+        def get_from(self):
+            return self._from
+
+        def get_to(self):
+            return self._to
+
+        def __lt__(self, other):
+            return self.get_weight() < other.get_weight()
 
     class Node:
         """
