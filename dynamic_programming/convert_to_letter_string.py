@@ -12,7 +12,11 @@
 class ConvertToLetterString:
     @staticmethod
     def convert(chars):
-        pass
+        if chars is None or len(chars) == 0:
+            return
+
+        chars_list = list(chars)
+        return ConvertToLetterString.process(chars_list, 0)
 
     @staticmethod
     def process(chars, i):
@@ -23,12 +27,20 @@ class ConvertToLetterString:
             return 0
 
         if chars[i] == '1':
-            pass
+            res = ConvertToLetterString.process(chars, i + 1)
+            if i + 1 < len(chars):
+                res += ConvertToLetterString.process(chars, i + 2)
+            return res
 
         if chars[i] == '2':
-            pass
+            res = ConvertToLetterString.process(chars, i + 1)
+            if i + 1 < len(chars) and ('0' < chars[i] <= '6'):
+                res += ConvertToLetterString.process(chars, i + 2)
+            return res
 
-        if
+        return ConvertToLetterString.process(chars, i + 1)
+
 
 if __name__ == '__main__':
-    pass
+    print(ConvertToLetterString.convert('11111'))
+
